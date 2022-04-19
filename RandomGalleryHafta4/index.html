@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body></body>
+  <script>
+// Sütun
+    const gridColumns = 4;
+// Satır
+    const gridRows = 2;
+// sütun*satır sayısı kaç tane fotoğrafımızın olacağını söylüyor.
+    const gridItems = gridColumns * gridRows;
+// HTML'siz görünüm
+// Fotoğrafları çektiğimiz site.
+    const link = "https://source.unsplash.com/collection";
+// Body elementini seçiyoruz.
+    const body = document.querySelector("body");
+// Başlığımız için bir Header elementi oluşturuyoruz.
+    const header = document.createElement("h1");
+// Başlığımızı yazıyoruz.
+    const headerText = document.createTextNode("My Photos");
+// Metnimizi Header elementine yediriyoruz.
+    header.appendChild(headerText);
+// Başlığmızı Body'e yerleştiriyoruz.
+    body.insertBefore(header, body.firstChild);
+// Galerimizin en dış çerçevesini oluşturuyoruz.Bütün fotoğraflar bu elementin "child" elemanı olacak.
+    const photo = document.createElement("div");
+// Galerimizi Body'e yerleştiriyoruz.
+    body.appendChild(photo, body.firstChild);
+// CSS kısmını burada oluşturuyoruz.
+    header.style.textAlign = "center";
+    header.style.border="dotted 5px #FF66CC";
+// Header için Stillendirmeler.
+    header.style.fontFamily = "Open Sans";
+    header.style.letterSpacing = "1px";
+    header.style.color = "#000000";
+// Body için Stillendirmeler.
+    body.style.display = "flex";
+    body.style.alignItems = "center";
+    body.style.justifyContent = "center";
+    body.style.backgroundColor = "#FFFFFF";
+    body.style.flexDirection = "column";
+// Galeri için Stillendirmeler.
+    photo.style.display = "grid";
+    photo.style.alignItems = "center";
+    photo.style.gap = "2rem";
+    photo.style.justifyContent = "center";
+    photo.style.gridTemplateColumns = `repeat(${gridColumns}, 1fr)`;
+//Random Fotoğraf Gelmesini Sağlayan kod
+    for (let i = 0; i < gridItems; i++) {
+      // Img elementi.
+      const image = document.createElement("img");
+      // Image elementini galeri'ye yerleştiriyoruz.
+      photo.appendChild(image);
+      // Image Stillendirmeleri.
+      image.style.border = "dotted 2px";
+      document.querySelectorAll("img").forEach((image) => {
+        image.src = `${link}/${Math.floor(Math.random() * 100)+1}/300x300`;
+      });
+    }
+  </script>
+</html>
